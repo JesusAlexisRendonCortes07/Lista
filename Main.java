@@ -1,49 +1,54 @@
-package Listas;
+package Ejercicio;
 
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[]args){
-        menuLista();
-    }
-    public static void menuLista() {
-        Scanner scanner = new Scanner(System.in);
-        Lista lista = new Lista();
-        lista.registrarElementos();
+    public static void main(String[] args) {
+        Libreria libreria = new Libreria();
+        Scanner sc = new Scanner(System.in);
 
-        int opcion;
-        do {
-            System.out.println("1. Agregar un elemneto a la lista\n" +
-                    "2. Ver tamaño de la lista\n" +
-                    "3. Verifiar si la lista esta vacia\n" +
-                    "4. Buscar elemento en la lista\n" +
-                    "5. Eliminar elemento de la lista\n" +
-                    "Seleccione una opción\n");
-            opcion = scanner.nextInt();
+        while (true) {
+            System.out.println("LIBRERIA: ");
+            System.out.println("1. Agregar libro" +
+                    "\n2. Eliminar libro" +
+                    "\n3. Agregar un lector" +
+                    "\n4. Atender lector" +
+                    "\n5. Mostrar libros" +
+                    "\n6. Mostrar lectores" +
+                    "\n7. Salir");
+            int opcion = sc.nextInt();
+
+
             switch (opcion) {
                 case 1:
-                    lista.crearLista();
+                    System.out.println("Ingrese el título de un libro: ");
+                    String libro = sc.nextLine();
+                    libreria.agregarLibro(libro);
                     break;
                 case 2:
-                    lista.tamanioLista();
+                    libreria.eliminarLibro();
                     break;
                 case 3:
-                    lista.estaVacia();
+                    System.out.println("Ingrese nombre del lector:");
+                    String lector = sc.nextLine();
+                    libreria.agregarLector(lector);
                     break;
                 case 4:
-                    lista.buscarElemento();
+                    libreria.atenderLector();
                     break;
                 case 5:
-                    lista.eliminar();
+                    libreria.mostrarLibros();
                     break;
                 case 6:
-                    lista.compararListas();
-                    System.out.println("Comparar listas");
+                    libreria.mostrarLectores();
+                    break;
+                case 7:
+                    System.out.println("Saliendo...");
+                    sc.close();
+                    return;
                 default:
-                    System.out.println("Ingrese una opción valida");
+                    System.out.println("Opción no válida");
             }
         }
-        while (opcion != 7);
-        scanner.close();
     }
 }
